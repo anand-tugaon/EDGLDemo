@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct ProductDetailView: View {
-    
     @StateObject var  edglDemoViewModel: EDGLDemoViewModel
     var product: Product
     
-
     init(viewModel: EDGLDemoViewModel, product: Product) {
         _edglDemoViewModel = StateObject(wrappedValue: viewModel)
         self.product = product

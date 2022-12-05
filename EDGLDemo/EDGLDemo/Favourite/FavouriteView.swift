@@ -30,15 +30,15 @@ struct FavouriteView: View {
                         }
                     }
                 }
-            }.navigationTitle("My Favourite")
+            }.navigationTitle(AppConstants.myFavouriteTitle)
                 .navigationBarTitleDisplayMode(.inline)
             Spacer()
         }
     }
 }
 
-//struct FavouriteView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FavouriteView(viewModel: EDGDemoViewModel())
-//    }
-//}
+struct FavouriteView_Previews: PreviewProvider {
+    static var previews: some View {
+        FavouriteView(viewModel: EDGLDemoViewModel(dataService: ProductListtMockDataService()))
+    }
+}

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Product: Decodable, Identifiable {
+struct Product: Codable, Identifiable {
     var citrusId: String?
     var title: String?
     var id: String?
@@ -27,7 +27,7 @@ struct Product: Decodable, Identifiable {
     var isFavourite: Bool? = false
 }
 
-struct Price: Decodable, Identifiable {
+struct Price: Codable, Identifiable {
     var message: String?
     var value: Double?
     var isOfferPrice: Bool?

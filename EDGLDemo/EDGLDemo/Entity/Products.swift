@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Products: Decodable {
+struct Products: Codable {
     var products: [Product]
 }

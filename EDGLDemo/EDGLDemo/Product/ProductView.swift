@@ -15,26 +15,34 @@ struct ProductView: View {
     }
     
     var body: some View {
-        NavigationView {
-            List {
-                if let products = edglDemoViewModel.productLists?.products {
-                    ForEach(products) { product in
-                        NavigationLink {
-                           ProductDetailView(viewModel: edglDemoViewModel, product: product)
-                        } label: {
-                            ProductRowView(viewModel: edglDemoViewModel, product: product)
+        if edglDemoViewModel.errorString != nil {
+            Text("\(edglDemoViewModel.errorString ?? AppConstants.internalServerError)")
+                .bold()
+                .lineLimit(2)
+                .padding(.horizontal, 24)
+                .multilineTextAlignment(.center)
+        } else {
+            NavigationView {
+                List {
+                    if let products = edglDemoViewModel.productLists?.products {
+                        ForEach(products) { product in
+                            NavigationLink {
+                                ProductDetailView(viewModel: edglDemoViewModel, product: product)
+                            } label: {
+                                ProductRowView(viewModel: edglDemoViewModel, product: product)
+                            }
                         }
                     }
-                }
-            }.navigationTitle("Products")
-                .navigationBarTitleDisplayMode(.inline)
-            Spacer()
+                }.navigationTitle(AppConstants.productsTitle)
+                    .navigationBarTitleDisplayMode(.inline)
+                Spacer()
+            }
         }
     }
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProductView(viewModel: EDGDemoViewModel())
-//    }
-//}
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProductView(viewModel: EDGLDemoViewModel(dataService: ProductListtMockDataService()))
+    }
+}

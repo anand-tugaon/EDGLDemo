@@ -11,7 +11,8 @@ import UIKit
 
 class EDGLDemoViewModel: ObservableObject {
     @Published var productLists: Products?
-  
+    @Published var errorString : String?
+    
     var cancellables = Set<AnyCancellable>()
     var dataService: EDGLDataServiceRequestProtocol
     
@@ -21,8 +22,12 @@ class EDGLDemoViewModel: ObservableObject {
     }
     
     private func getProducts() {
-        dataService.getData().sink { _ in
-            
+        dataService.getData().sink { completion in
+            switch completion {
+            case .finished: break
+            case .failure(let error):
+                self.errorString = error.localizedDescription
+            }
         } receiveValue: { [weak self] returnPosts in
             self?.productLists = returnPosts
         }.store(in: &cancellables)

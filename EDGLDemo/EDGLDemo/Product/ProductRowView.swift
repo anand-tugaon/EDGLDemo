@@ -84,7 +84,7 @@ struct thumbNilImage: View {
                 .background(Color.gray)
             
         } else {
-            Image(systemName: "video")
+            Image(systemName: "video")                  //Use as default Image 
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 130, height: 70)
                 .background(Color.gray)
